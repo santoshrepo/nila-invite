@@ -123,7 +123,6 @@ body{
 .stage.opened .dots{opacity:1}
 .dot{width:9px;height:9px;border-radius:50%;background:#cdd6e0;cursor:pointer;transition:.3s}
 .dot.active{background:var(--blue);width:22px;border-radius:6px}
-/* top garland */
 .bunting-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:center;z-index:2;transition:opacity .4s ease}
 .bunting-top span{width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:21px solid var(--yellow)}
 .bunting-top span:nth-child(6n+2){border-top-color:var(--red)}
@@ -132,15 +131,12 @@ body{
 .bunting-top span:nth-child(6n+5){border-top-color:var(--pink)}
 .bunting-top span:nth-child(6n){border-top-color:var(--orange)}
 .stage.opened .bunting-top{opacity:0}
-/* title above envelope */
 .invite-title{position:absolute;top:150px;left:0;right:0;text-align:center;z-index:3;transition:opacity .4s ease}
 .stage.opened .invite-title{opacity:0}
 .ti-small{font-family:'Caveat',cursive;font-size:30px;color:var(--teal);display:block;line-height:.7;transform:rotate(-4deg)}
 .ti-big{font-family:'Baloo 2',cursive;font-weight:800;font-size:46px;line-height:1;display:block;letter-spacing:1px}
 .ti-sub{font-family:'Patrick Hand';font-size:13px;color:#9a9a9a;letter-spacing:2px;display:block;margin-top:5px;text-transform:uppercase}
-/* date teaser below envelope */
-.date-teaser{position:absolute;left:0;right:0;bottom:44px;text-align:center;z-index:6;font-family:'Patrick Hand';
-  font-size:15px;letter-spacing:.5px;color:var(--blue-d);transition:opacity .4s ease}
+.date-teaser{position:absolute;left:0;right:0;bottom:44px;text-align:center;z-index:6;font-family:'Patrick Hand';font-size:15px;letter-spacing:.5px;color:var(--blue-d);transition:opacity .4s ease}
 .stage.opened .date-teaser{opacity:0}
 .open-arrow{position:absolute;right:6px;bottom:250px;width:152px;z-index:8;text-align:center;transition:opacity .4s ease;animation:bob 1.9s ease-in-out infinite;pointer-events:none}
 .stage.opened .open-arrow{opacity:0}
@@ -207,7 +203,7 @@ body{
             <button class="mini-btn dir" id="dirBtn">🧭 Directions</button>
             <button class="mini-btn rsvp" id="rsvpBtn">💬 RSVP</button>
           </div>
-          <p class="iv-notes">🅿️ parking available · kindly rsvp by 19 july</p>
+          <p class="iv-notes">🅿️ parking available on site</p>
           <div class="cd-strip">
             <div class="confetti-mini"></div>
             <div class="countdown">
@@ -234,9 +230,9 @@ body{
             <div class="polaroid r1"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%201.jpeg" alt=""></div><p>sweet smiles</p></div>
             <div class="polaroid r2"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%202.jpeg" alt=""></div><p>tiny &amp; precious</p></div>
             <div class="polaroid r3"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%203.jpeg" alt=""></div><p>one whole year!</p></div>
-            <div class="polaroid r1"><div class="ph ph-empty"><span>＋</span></div><p>more to come</p></div>
+            <div class="polaroid r1"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%204.jpeg" alt=""></div><p>our little star</p></div>
           </div>
-          <p class="al-note">slip your own photos into these frames</p>
+          <p class="al-note">a year full of love &amp; little moments 💕</p>
           <div class="cd-strip">
             <div class="confetti-mini"></div>
             <div class="countdown">
@@ -336,8 +332,6 @@ function wireBtn(id, url){
 wireBtn("gcalBtn", GCAL_URL);
 wireBtn("dirBtn", MAPS_URL);
 wireBtn("rsvpBtn", WHATSAPP_URL);
-
-/* confetti burst */
 const CONFETTI_COLORS=["#e8775f","#f0a85a","#f6cf63","#7cc6a0","#5fb0d6","#5f86ad","#ef9bbb"];
 function burstConfetti(){
   for(let i=0;i<48;i++){
