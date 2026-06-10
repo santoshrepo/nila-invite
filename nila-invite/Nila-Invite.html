@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Nila's 1st Birthday — You're Invited!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Patrick+Hand&family=Caveat:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#5f86ad;--blue-d:#3f5d7e;--blue-dd:#2f4a66;--pink:#ef9bbb;--yellow:#f6cf63;
+  --green:#7cc6a0;--red:#e8775f;--orange:#f0a85a;--teal:#4bb5b0;--sky:#5fb0d6;
+  --cream:#fdfaf3;--ink:#4a4a55;
+  --stripe-h:repeating-linear-gradient(90deg,var(--red) 0 13px,var(--orange) 13px 26px,var(--yellow) 26px 39px,var(--green) 39px 52px,var(--sky) 52px 65px,var(--blue) 65px 78px);
+  --stripe-v:repeating-linear-gradient(0deg,var(--red) 0 13px,var(--orange) 13px 26px,var(--yellow) 26px 39px,var(--green) 39px 52px,var(--sky) 52px 65px,var(--blue) 65px 78px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Quicksand',system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(165deg,#e9f1f8 0%,#f5edf4 55%,#fdf6ea 100%);overflow:hidden;
+}
+.bg-decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.float-balloon{position:absolute;width:56px;height:70px;border-radius:50%;opacity:.24;animation:drift 15s ease-in-out infinite}
+.float-balloon::after{content:"";position:absolute;bottom:-22px;left:50%;width:1px;height:22px;background:rgba(0,0,0,.16)}
+.b-pink{background:var(--pink);top:7%;left:5%}
+.b-blue{background:var(--blue);top:60%;left:89%;animation-delay:-5s}
+.b-yellow{background:var(--yellow);top:82%;left:9%;animation-delay:-9s}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-20px) rotate(4deg)}}
+.hat{position:relative;width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:52px solid var(--blue)}
+.hat::before{content:"";position:absolute;top:-62px;left:-6px;width:12px;height:12px;border-radius:50%;background:var(--red)}
+.hat::after{content:"";position:absolute;left:-22px;top:36px;width:44px;height:11px;border-radius:3px;background:repeating-linear-gradient(90deg,var(--yellow) 0 7px,var(--pink) 7px 14px)}
+.stage{position:fixed;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.canvas{position:relative;width:380px;height:760px;transform-origin:center center}
+.deco-hat{position:absolute;left:28px;top:48px;transform:rotate(-12deg) scale(.8);z-index:2}
+.mini-balloon{position:absolute;width:34px;height:44px;border-radius:50%;z-index:2}
+.mini-balloon::after{content:"";position:absolute;bottom:-18px;left:50%;width:1px;height:18px;background:rgba(0,0,0,.18)}
+.mb-pink{background:var(--pink);right:38px;top:40px}
+.mb-blue{background:#9fc0e0;right:72px;top:70px}
+.envelope{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);width:300px;height:170px;z-index:2;cursor:pointer}
+.env-shadow{position:absolute;left:6%;right:6%;bottom:-10px;height:24px;border-radius:50%;background:rgba(47,74,102,.28);filter:blur(8px);z-index:0}
+.env-back{position:absolute;inset:0;border-radius:14px;z-index:1;background:linear-gradient(160deg,#5b7ea4,#3f5d7e)}
+.env-back::after{content:"";position:absolute;left:0;right:0;top:0;height:54%;background:linear-gradient(180deg,rgba(0,0,0,.22),transparent);border-radius:14px 14px 0 0}
+.env-flap{position:absolute;left:0;top:0;width:100%;height:60%;z-index:2;background:linear-gradient(160deg,#6e92b7,#5a7da3);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .55s ease;border-radius:14px 14px 0 0;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.stage.opened .env-flap{transform:rotateX(172deg) translateY(-2px);z-index:1;background:linear-gradient(160deg,#577aa0,#456788)}
+.env-front{position:absolute;left:0;bottom:0;width:100%;height:78%;z-index:5;background:linear-gradient(150deg,#789cc0,#557698);clip-path:polygon(0 100%,0 8%,50% 62%,100% 8%,100% 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.14)}
+.env-label{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;transition:opacity .4s ease;padding-top:8%}
+.stage.opened .env-label{opacity:0;pointer-events:none}
+.el-from{font-size:12px;letter-spacing:2px;opacity:.85}
+.el-name{font-family:'Caveat',cursive;font-size:50px;line-height:.85;text-shadow:0 3px 0 rgba(0,0,0,.12)}
+.el-hint{font-size:11px;letter-spacing:1px;opacity:.9;margin-top:4px;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.cards{position:absolute;left:50%;bottom:214px;transform:translateX(-50%);width:330px;z-index:5;pointer-events:none}
+.pcard{position:absolute;left:0;right:0;bottom:0;pointer-events:none;touch-action:none;transform:translateY(150px) scale(.7);opacity:0;z-index:1;transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .45s ease}
+.stage.opened .pcard.active{transform:translateY(0) scale(1);opacity:1;z-index:10;pointer-events:auto}
+.framed{position:relative;width:100%;padding:12px;border-radius:15px;background:var(--stripe-h)}
+.framed::before{content:"";position:absolute;inset:0;border-radius:15px;z-index:0;background:var(--stripe-v);-webkit-mask:linear-gradient(90deg,#000 12px,transparent 12px,transparent calc(100% - 12px),#000 calc(100% - 12px));mask:linear-gradient(90deg,#000 12px,transparent 12px,transparent calc(100% - 12px),#000 calc(100% - 12px))}
+.framed-inner{position:relative;z-index:2;background:#fff;border-radius:8px;padding:14px 14px 0;text-align:center;overflow:hidden}
+.dood{position:absolute;width:14px;height:14px;border:2.5px solid;border-radius:50%;border-color:transparent;opacity:.85;z-index:1}
+.dood.d1{top:14px;left:14px;border-top-color:var(--red);transform:rotate(20deg)}
+.dood.d2{top:18px;right:16px;border-bottom-color:var(--green);transform:rotate(-30deg)}
+.dood.d3{bottom:70px;left:12px;border-top-color:var(--sky);transform:rotate(60deg)}
+.dood.d4{bottom:88px;right:12px;border-bottom-color:var(--orange);transform:rotate(-15deg)}
+.cb{color:var(--blue)}.cg{color:var(--green)}.co{color:var(--orange)}.ct{color:var(--teal)}.cr{color:var(--red)}
+.iv-head{position:relative;padding-top:4px}
+.iv-its{font-family:'Caveat',cursive;font-size:24px;color:var(--teal);display:block;line-height:.8}
+.iv-fun{font-family:'Baloo 2',cursive;font-weight:800;font-size:50px;line-height:.9;letter-spacing:1px}
+.iv-tobe{font-family:'Caveat',cursive;font-size:20px;color:var(--teal);display:block;margin:-2px 0 2px}
+.iv-one-row{display:flex;align-items:center;justify-content:center;gap:2px}
+.iv-photo{position:relative;width:84px;height:84px}
+.iv-hat{position:absolute;left:8px;top:-26px;transform:rotate(-20deg) scale(.46);z-index:3}
+.photo-circle{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#cfe0ef,#eaf2f8);display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;box-shadow:inset 0 0 0 4px var(--yellow),0 3px 8px rgba(0,0,0,.12)}
+.photo-circle img{width:100%;height:100%;object-fit:cover;display:block}
+.iv-ne{font-family:'Baloo 2',cursive;font-weight:800;font-size:62px;line-height:.85;letter-spacing:2px}
+.iv-join{font-family:'Caveat',cursive;font-size:22px;color:var(--teal);margin-top:10px}
+.iv-name{font-family:'Baloo 2',cursive;font-weight:700;font-size:18px;color:var(--red);letter-spacing:1px;line-height:1.15;margin:2px 0 8px}
+.dot-divider{border-top:2px dotted #d8d2c4;margin:6px 8px}
+.gcal-btn{display:inline-flex;align-items:center;gap:6px;margin:10px auto 2px;border:none;cursor:pointer;font-family:'Quicksand';font-weight:700;font-size:13px;color:#fff;background:var(--blue);padding:9px 16px;border-radius:20px;box-shadow:0 4px 10px rgba(63,93,126,.3);transition:.2s}
+.gcal-btn:active{transform:scale(.95)}
+.iv-foot{display:flex;align-items:stretch;justify-content:center;gap:12px;margin-top:8px;text-align:left}
+.iv-date{text-align:center}
+.iv-month{font-family:'Patrick Hand';font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--orange)}
+.iv-day{font-family:'Baloo 2',cursive;font-weight:800;font-size:38px;color:var(--blue);line-height:.9;display:block}
+.iv-dow{font-family:'Patrick Hand';font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#9a9a9a}
+.v-divider{border-left:2px dotted #d8d2c4}
+.iv-addr{display:flex;flex-direction:column;justify-content:center}
+.iv-addr p{font-family:'Patrick Hand';font-size:12.5px;color:#777;line-height:1.25}
+.iv-rsvp{margin-top:6px;color:var(--red) !important}
+.card-head{font-family:'Baloo 2',cursive;font-weight:800;font-size:30px;line-height:1;margin-top:2px}
+.bunting{display:flex;justify-content:center;margin:8px 0 14px}
+.bunting span{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid var(--yellow)}
+.bunting span:nth-child(2){border-top-color:var(--red)}.bunting span:nth-child(3){border-top-color:var(--green)}
+.bunting span:nth-child(4){border-top-color:var(--blue)}.bunting span:nth-child(5){border-top-color:var(--pink)}
+.bunting span:nth-child(6){border-top-color:var(--orange)}
+.polaroids{display:flex;flex-wrap:wrap;justify-content:center;gap:11px}
+.polaroid{background:#fff;padding:7px 7px 4px;border-radius:3px;box-shadow:0 6px 14px rgba(0,0,0,.15);width:112px}
+.polaroid.r1{transform:rotate(-5deg)}.polaroid.r2{transform:rotate(3deg)}.polaroid.r3{transform:rotate(-2deg)}
+.ph{height:98px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;background:#eef2f6}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.polaroid p{font-family:'Caveat',cursive;font-size:17px;padding:4px 0 2px;color:#555}
+.al-note{margin:14px 0 12px;font-family:'Patrick Hand';font-size:13px;color:#a3a3a3}
+.ticket{background:#fff;border:2px dashed #d8c9a8;border-radius:12px;padding:9px 13px;margin-bottom:8px;text-align:left}
+.ticket h3{font-family:'Baloo 2',cursive;font-weight:600;font-size:15px;color:var(--blue-d)}
+.ticket p{font-family:'Patrick Hand';font-size:13.5px;color:#888;margin-top:2px}
+.rf-foot{font-family:'Caveat',cursive;font-size:20px;color:var(--red);margin:6px 0 10px}
+.cd-strip{margin:0 -14px}
+.confetti-mini{height:9px;background:repeating-linear-gradient(90deg,var(--red) 0 16px,var(--orange) 16px 32px,var(--yellow) 32px 48px,var(--green) 48px 64px,var(--sky) 64px 80px)}
+.countdown{display:flex;align-items:flex-start;justify-content:center;gap:3px;background:var(--blue-d);padding:8px 4px;color:#fff}
+.cd-box{text-align:center;min-width:44px}
+.cd-num{font-family:'Baloo 2',cursive;font-weight:700;font-size:24px;line-height:1;font-variant-numeric:tabular-nums}
+.cd-lab{font-size:9px;text-transform:uppercase;letter-spacing:1px;opacity:.78;margin-top:2px}
+.cd-sep{font-size:20px;font-weight:700;opacity:.45;margin-top:1px}
+.swipe-hint{position:absolute;left:0;right:0;bottom:54px;text-align:center;font-family:'Patrick Hand';font-size:13px;color:#9aa3ad;z-index:7;opacity:0;transition:opacity .4s ease .2s}
+.stage.opened .swipe-hint{opacity:1}
+.dots{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;gap:8px;z-index:7;opacity:0;transition:opacity .4s ease .2s}
+.stage.opened .dots{opacity:1}
+.dot{width:9px;height:9px;border-radius:50%;background:#cdd6e0;cursor:pointer;transition:.3s}
+.dot.active{background:var(--blue);width:22px;border-radius:6px}
+.open-arrow{position:absolute;right:6px;bottom:250px;width:152px;z-index:8;text-align:center;transition:opacity .4s ease;animation:bob 1.9s ease-in-out infinite;pointer-events:none}
+.stage.opened .open-arrow{opacity:0}
+.oa-text{display:block;font-family:'Caveat',cursive;font-size:23px;color:var(--red);line-height:1.05;transform:rotate(-7deg);margin-bottom:-4px}
+.oa-text small{font-size:15px;color:var(--teal)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+</style>
+</head>
+<body>
+
+<div class="bg-decor">
+  <div class="float-balloon b-pink"></div>
+  <div class="float-balloon b-blue"></div>
+  <div class="float-balloon b-yellow"></div>
+</div>
+
+<div class="stage" id="stage">
+ <div class="canvas" id="canvas">
+
+  <div class="hat deco-hat"></div>
+  <div class="mini-balloon mb-pink"></div>
+  <div class="mini-balloon mb-blue"></div>
+
+  <div class="cards" id="cards">
+
+    <div class="pcard active" data-i="0">
+      <div class="framed">
+        <div class="framed-inner">
+          <span class="dood d1"></span><span class="dood d2"></span><span class="dood d3"></span><span class="dood d4"></span>
+          <div class="iv-head">
+            <span class="iv-its">it's</span>
+            <h2 class="iv-fun"><span class="cb">F</span><span class="cg">U</span><span class="co">N</span></h2>
+            <span class="iv-tobe">to be</span>
+            <div class="iv-one-row">
+              <div class="iv-photo"><div class="hat iv-hat"></div><div class="photo-circle"><img src="Nila%20pictures/Main%20Photo.jpeg" alt="Nila"></div></div>
+              <span class="iv-ne"><span class="ct">N</span><span class="co">E</span></span>
+            </div>
+          </div>
+          <p class="iv-join">join us to celebrate</p>
+          <h3 class="iv-name">NILA'S<br>FIRST BIRTHDAY</h3>
+          <div class="dot-divider"></div>
+          <div class="iv-foot">
+            <div class="iv-date">
+              <span class="iv-month">July</span>
+              <span class="iv-day">26</span>
+              <span class="iv-dow">Sunday · 11 AM</span>
+            </div>
+            <div class="v-divider"></div>
+            <div class="iv-addr">
+              <p>Burnside Gardens<br>Community Centre</p>
+              <p class="iv-rsvp">3 Blackwood Pl,<br>Oatlands NSW 2117</p>
+            </div>
+          </div>
+          <button class="gcal-btn" id="gcalBtn">📅 Add to Google Calendar</button>
+          <div class="cd-strip">
+            <div class="confetti-mini"></div>
+            <div class="countdown">
+              <div class="cd-box"><div class="cd-num cd-days">00</div><div class="cd-lab">Days</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-hours">00</div><div class="cd-lab">Hrs</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-minutes">00</div><div class="cd-lab">Min</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-seconds">00</div><div class="cd-lab">Sec</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard" data-i="1">
+      <div class="framed">
+        <div class="framed-inner">
+          <span class="dood d1"></span><span class="dood d2"></span><span class="dood d3"></span>
+          <h2 class="card-head"><span class="cb">our</span> <span class="co">birthday</span> <span class="cg">girl</span></h2>
+          <div class="bunting"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="polaroids">
+            <div class="polaroid r1"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%201.jpeg" alt=""></div><p>sweet smiles</p></div>
+            <div class="polaroid r2"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%202.jpeg" alt=""></div><p>tiny &amp; precious</p></div>
+            <div class="polaroid r3"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%203.jpeg" alt=""></div><p>one whole year!</p></div>
+          </div>
+          <p class="al-note">slip your own photos into these frames</p>
+          <div class="cd-strip">
+            <div class="confetti-mini"></div>
+            <div class="countdown">
+              <div class="cd-box"><div class="cd-num cd-days">00</div><div class="cd-lab">Days</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-hours">00</div><div class="cd-lab">Hrs</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-minutes">00</div><div class="cd-lab">Min</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-seconds">00</div><div class="cd-lab">Sec</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard" data-i="2">
+      <div class="framed">
+        <div class="framed-inner">
+          <span class="dood d1"></span><span class="dood d2"></span><span class="dood d3"></span>
+          <h2 class="card-head"><span class="cb">raffle</span> <span class="ct">&amp;</span> <span class="co">games</span></h2>
+          <div class="bunting"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="ticket"><h3>🎟️ lucky draw</h3><p>grab a ticket at the door for a chance to win a fun prize.</p></div>
+          <div class="ticket"><h3>🎪 party games</h3><p>face painting, balloon animals &amp; musical chairs.</p></div>
+          <div class="ticket"><h3>🧁 cake &amp; treats</h3><p>sweet bites &amp; a goodie bag for every little guest.</p></div>
+          <p class="rf-foot">everyone goes home with a surprise!</p>
+          <div class="cd-strip">
+            <div class="confetti-mini"></div>
+            <div class="countdown">
+              <div class="cd-box"><div class="cd-num cd-days">00</div><div class="cd-lab">Days</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-hours">00</div><div class="cd-lab">Hrs</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-minutes">00</div><div class="cd-lab">Min</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-box"><div class="cd-num cd-seconds">00</div><div class="cd-lab">Sec</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="envelope" id="envelope">
+    <div class="env-shadow"></div>
+    <div class="env-back"></div>
+    <div class="env-flap"></div>
+    <div class="env-front"></div>
+    <div class="env-label" id="envLabel">
+      <p class="el-from">a letter from</p>
+      <h1 class="el-name">Nila</h1>
+      <p class="el-hint">tap to open</p>
+    </div>
+  </div>
+
+  <div class="open-arrow" id="openArrow">
+    <span class="oa-text">a surprise<br>inside! <small>open me</small></span>
+    <svg viewBox="0 0 160 120" width="150" height="110" fill="none">
+      <path d="M138 12 C 156 55, 120 88, 58 100" stroke="#e8775f" stroke-width="3.2" stroke-dasharray="1.5 9" stroke-linecap="round"/>
+      <path d="M58 100 l 20 -3 M58 100 l 9 -18" stroke="#e8775f" stroke-width="3.2" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="swipe-hint" id="swipeHint">swipe right → next · left ← back to envelope</div>
+
+  <div class="dots" id="dots">
+    <span class="dot active" data-i="0"></span>
+    <span class="dot" data-i="1"></span>
+    <span class="dot" data-i="2"></span>
+  </div>
+
+ </div>
+</div>
+
+<script>
+const PARTY_DATE = new Date("2026-07-26T11:00:00");
+const GCAL_URL = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+  + "&text=" + encodeURIComponent("Nila's 1st Birthday")
+  + "&dates=20260726T010000Z/20260726T040000Z"
+  + "&details=" + encodeURIComponent("Join us to celebrate Nila's first birthday! 🎉")
+  + "&location=" + encodeURIComponent("Burnside Gardens Community Centre, 3 Blackwood Pl, Oatlands NSW 2117");
+const gcalBtn = document.getElementById("gcalBtn");
+if(gcalBtn){
+  gcalBtn.addEventListener("pointerdown", e=>e.stopPropagation());
+  gcalBtn.addEventListener("click", ()=> window.open(GCAL_URL, "_blank"));
+}
+const stage = document.getElementById("stage");
+const canvas = document.getElementById("canvas");
+const envelope = document.getElementById("envelope");
+function fit(){
+  const pad = 16;
+  const s = Math.min((window.innerWidth - pad)/380, (window.innerHeight - pad)/760);
+  canvas.style.transform = `scale(${Math.min(s, 1.6)})`;
+}
+window.addEventListener("resize", fit); fit();
+const cardsEl = document.getElementById("cards");
+const cards = [...document.querySelectorAll(".pcard")];
+const dots = [...document.querySelectorAll(".dot")];
+const count = cards.length;
+let idx = 0, opened = false, busy = false;
+function openEnv(){ if(opened) return; opened = true; stage.classList.add("opened"); cards[0].classList.add("active"); syncDots(); }
+envelope.addEventListener("click", openEnv);
+function closeEnv(){ if(!opened) return; cards[idx].classList.remove("active"); idx = 0;
+  setTimeout(()=>{ stage.classList.remove("opened"); opened = false; syncDots(); }, 200); }
+function next(){ if(busy || !opened) return; if(idx >= count-1){ closeEnv(); return; } busy = true;
+  cards[idx].classList.remove("active"); idx++; cards[idx].classList.add("active"); syncDots(); setTimeout(()=>busy=false, 600); }
+function back(){ if(busy || !opened) return; if(idx === 0){ closeEnv(); return; } busy = true;
+  cards[idx].classList.remove("active"); idx--; cards[idx].classList.add("active"); syncDots(); setTimeout(()=>busy=false, 600); }
+function syncDots(){ dots.forEach((d,k)=>d.classList.toggle("active", k===idx)); }
+dots.forEach(d=>d.addEventListener("click", ()=>{ if(!opened) return; const t=+d.dataset.i; while(idx<t) next(); while(idx>t) back(); }));
+window.addEventListener("keydown", e=>{
+  if(e.key === "ArrowRight"){ e.preventDefault(); opened ? next() : openEnv(); }
+  else if(e.key === "ArrowLeft"){ e.preventDefault(); back(); }
+  else if((e.key === "Enter" || e.key === " ") && !opened){ e.preventDefault(); openEnv(); }
+});
+let sx=0, dragging=false, moved=0, dragEl=null;
+function start(x,el){ if(!opened||busy) return; sx=x; moved=0; dragging=true; dragEl=el||cards[idx]; if(dragEl) dragEl.style.transition="none"; }
+function move(x){ if(!dragging||!dragEl) return; moved=x-sx; dragEl.style.transform=`translateX(${moved}px) rotate(${moved*0.03}deg)`; }
+function end(){ if(!dragging) return; dragging=false; if(dragEl){ dragEl.style.transition=""; dragEl.style.transform=""; } dragEl=null;
+  if(moved < -45) next(); else if(moved > 45) back(); }
+cards.forEach(c=>{
+  c.addEventListener("pointerdown", e=>{ start(e.clientX,c); try{c.setPointerCapture(e.pointerId);}catch(_){ } });
+});
+window.addEventListener("pointermove", e=>move(e.clientX));
+window.addEventListener("pointerup", end);
+window.addEventListener("pointercancel", end);
+const pad=n=>String(n).padStart(2,"0");
+function set(cls,v){ document.querySelectorAll(cls).forEach(el=>el.textContent=v); }
+function tick(){ const diff=PARTY_DATE-new Date();
+  set(".cd-days", pad(Math.max(0,Math.floor(diff/86400000))));
+  set(".cd-hours", pad(Math.max(0,Math.floor(diff/3600000)%24)));
+  set(".cd-minutes", pad(Math.max(0,Math.floor(diff/60000)%60)));
+  set(".cd-seconds", pad(Math.max(0,Math.floor(diff/1000)%60))); }
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
