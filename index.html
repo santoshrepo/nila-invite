@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nila's 1st Birthday — You're Invited!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Patrick+Hand&family=Caveat:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -44,14 +44,14 @@ body{
 .env-flap{position:absolute;left:0;top:0;width:100%;height:60%;z-index:2;background:linear-gradient(160deg,#6e92b7,#5a7da3);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .55s ease;border-radius:14px 14px 0 0;box-shadow:0 2px 6px rgba(0,0,0,.12)}
 .stage.opened .env-flap{transform:rotateX(172deg) translateY(-2px);z-index:1;background:linear-gradient(160deg,#577aa0,#456788)}
 .env-front{position:absolute;left:0;bottom:0;width:100%;height:78%;z-index:5;background:linear-gradient(150deg,#789cc0,#557698);clip-path:polygon(0 100%,0 8%,50% 62%,100% 8%,100% 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.14)}
-.env-label{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;transition:opacity .4s ease;padding-top:8%}
+.env-label{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;color:#fff;transition:opacity .4s ease;padding-bottom:16px}
 .stage.opened .env-label{opacity:0;pointer-events:none}
 .el-from{font-size:12px;letter-spacing:2px;opacity:.85}
 .el-name{font-family:'Caveat',cursive;font-size:50px;line-height:.85;text-shadow:0 3px 0 rgba(0,0,0,.12)}
 .el-hint{font-size:11px;letter-spacing:1px;opacity:.9;margin-top:4px;animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 .cards{position:absolute;left:50%;bottom:214px;transform:translateX(-50%);width:330px;z-index:5;pointer-events:none}
-.pcard{position:absolute;left:0;right:0;bottom:0;pointer-events:none;touch-action:none;transform:translateY(150px) scale(.7);opacity:0;z-index:1;transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .45s ease}
+.pcard{position:absolute;left:0;right:0;bottom:0;pointer-events:none;touch-action:pinch-zoom;transform:translateY(150px) scale(.7);opacity:0;z-index:1;transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .45s ease}
 .stage.opened .pcard.active{transform:translateY(0) scale(1);opacity:1;z-index:10;pointer-events:auto}
 .framed{position:relative;width:100%;padding:12px;border-radius:15px;background:var(--stripe-h)}
 .framed::before{content:"";position:absolute;inset:0;border-radius:15px;z-index:0;background:var(--stripe-v);-webkit-mask:linear-gradient(90deg,#000 12px,transparent 12px,transparent calc(100% - 12px),#000 calc(100% - 12px));mask:linear-gradient(90deg,#000 12px,transparent 12px,transparent calc(100% - 12px),#000 calc(100% - 12px))}
@@ -116,6 +116,25 @@ body{
 .stage.opened .dots{opacity:1}
 .dot{width:9px;height:9px;border-radius:50%;background:#cdd6e0;cursor:pointer;transition:.3s}
 .dot.active{background:var(--blue);width:22px;border-radius:6px}
+/* top garland */
+.bunting-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:center;z-index:2;transition:opacity .4s ease}
+.bunting-top span{width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:21px solid var(--yellow)}
+.bunting-top span:nth-child(6n+2){border-top-color:var(--red)}
+.bunting-top span:nth-child(6n+3){border-top-color:var(--green)}
+.bunting-top span:nth-child(6n+4){border-top-color:var(--blue)}
+.bunting-top span:nth-child(6n+5){border-top-color:var(--pink)}
+.bunting-top span:nth-child(6n){border-top-color:var(--orange)}
+.stage.opened .bunting-top{opacity:0}
+/* title above envelope */
+.invite-title{position:absolute;top:150px;left:0;right:0;text-align:center;z-index:3;transition:opacity .4s ease}
+.stage.opened .invite-title{opacity:0}
+.ti-small{font-family:'Caveat',cursive;font-size:30px;color:var(--teal);display:block;line-height:.7;transform:rotate(-4deg)}
+.ti-big{font-family:'Baloo 2',cursive;font-weight:800;font-size:46px;line-height:1;display:block;letter-spacing:1px}
+.ti-sub{font-family:'Patrick Hand';font-size:13px;color:#9a9a9a;letter-spacing:2px;display:block;margin-top:5px;text-transform:uppercase}
+/* date teaser below envelope */
+.date-teaser{position:absolute;left:0;right:0;bottom:44px;text-align:center;z-index:6;font-family:'Patrick Hand';
+  font-size:15px;letter-spacing:.5px;color:var(--blue-d);transition:opacity .4s ease}
+.stage.opened .date-teaser{opacity:0}
 .open-arrow{position:absolute;right:6px;bottom:250px;width:152px;z-index:8;text-align:center;transition:opacity .4s ease;animation:bob 1.9s ease-in-out infinite;pointer-events:none}
 .stage.opened .open-arrow{opacity:0}
 .oa-text{display:block;font-family:'Caveat',cursive;font-size:23px;color:var(--red);line-height:1.05;transform:rotate(-7deg);margin-bottom:-4px}
@@ -137,6 +156,14 @@ body{
   <div class="hat deco-hat"></div>
   <div class="mini-balloon mb-pink"></div>
   <div class="mini-balloon mb-blue"></div>
+
+  <div class="bunting-top"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="invite-title">
+    <span class="ti-small">you're</span>
+    <span class="ti-big"><span class="cb">I</span><span class="co">N</span><span class="cg">V</span><span class="cr">I</span><span class="ct">T</span><span class="co">E</span><span class="cb">D</span><span class="cr">!</span></span>
+    <span class="ti-sub">to Nila's 1st birthday</span>
+  </div>
 
   <div class="cards" id="cards">
 
@@ -253,6 +280,8 @@ body{
     </div>
   </div>
 
+  <div class="date-teaser">🎈 Sunday, July 26 · 11:00 AM</div>
+
   <div class="open-arrow" id="openArrow">
     <span class="oa-text">a surprise<br>inside! <small>open me</small></span>
     <svg viewBox="0 0 160 120" width="150" height="110" fill="none">
@@ -319,7 +348,7 @@ function move(x){ if(!dragging||!dragEl) return; moved=x-sx; dragEl.style.transf
 function end(){ if(!dragging) return; dragging=false; if(dragEl){ dragEl.style.transition=""; dragEl.style.transform=""; } dragEl=null;
   if(moved < -45) next(); else if(moved > 45) back(); }
 cards.forEach(c=>{
-  c.addEventListener("pointerdown", e=>{ start(e.clientX,c); try{c.setPointerCapture(e.pointerId);}catch(_){ } });
+  c.addEventListener("pointerdown", e=>{ if(e.pointerType!=="mouse" && !e.isPrimary) return; start(e.clientX,c); try{c.setPointerCapture(e.pointerId);}catch(_){ } });
 });
 window.addEventListener("pointermove", e=>move(e.clientX));
 window.addEventListener("pointerup", end);
