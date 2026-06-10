@@ -75,8 +75,14 @@ body{
 .iv-join{font-family:'Caveat',cursive;font-size:22px;color:var(--teal);margin-top:10px}
 .iv-name{font-family:'Baloo 2',cursive;font-weight:700;font-size:18px;color:var(--red);letter-spacing:1px;line-height:1.15;margin:2px 0 8px}
 .dot-divider{border-top:2px dotted #d8d2c4;margin:6px 8px}
-.gcal-btn{display:inline-flex;align-items:center;gap:6px;margin:10px auto 2px;border:none;cursor:pointer;font-family:'Quicksand';font-weight:700;font-size:13px;color:#fff;background:var(--blue);padding:9px 16px;border-radius:20px;box-shadow:0 4px 10px rgba(63,93,126,.3);transition:.2s}
-.gcal-btn:active{transform:scale(.95)}
+.btn-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:10px 0 4px}
+.mini-btn{border:none;cursor:pointer;font-family:'Quicksand';font-weight:700;font-size:11.5px;color:#fff;background:var(--blue);padding:7px 11px;border-radius:16px;box-shadow:0 3px 8px rgba(63,93,126,.28);transition:.15s}
+.mini-btn:active{transform:scale(.94)}
+.mini-btn.dir{background:var(--green)}
+.mini-btn.rsvp{background:var(--red)}
+.iv-notes{font-family:'Patrick Hand';font-size:12px;color:#8a8a8a;margin:2px 0 4px}
+.confetti-piece{position:fixed;top:-14px;width:9px;height:14px;z-index:40;pointer-events:none;border-radius:1px;animation:confettiFall linear forwards}
+@keyframes confettiFall{0%{transform:translateY(-14px) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:.85}}
 .iv-foot{display:flex;align-items:stretch;justify-content:center;gap:12px;margin-top:8px;text-align:left}
 .iv-date{text-align:center}
 .iv-month{font-family:'Patrick Hand';font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--orange)}
@@ -97,6 +103,7 @@ body{
 .polaroid.r1{transform:rotate(-5deg)}.polaroid.r2{transform:rotate(3deg)}.polaroid.r3{transform:rotate(-2deg)}
 .ph{height:98px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;background:#eef2f6}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-empty{background:#f3f5f8;border:2px dashed #d6dde4;color:#b8c2cc;font-size:34px}
 .polaroid p{font-family:'Caveat',cursive;font-size:17px;padding:4px 0 2px;color:#555}
 .al-note{margin:14px 0 12px;font-family:'Patrick Hand';font-size:13px;color:#a3a3a3}
 .ticket{background:#fff;border:2px dashed #d8c9a8;border-radius:12px;padding:9px 13px;margin-bottom:8px;text-align:left}
@@ -116,6 +123,7 @@ body{
 .stage.opened .dots{opacity:1}
 .dot{width:9px;height:9px;border-radius:50%;background:#cdd6e0;cursor:pointer;transition:.3s}
 .dot.active{background:var(--blue);width:22px;border-radius:6px}
+/* top garland */
 .bunting-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:center;z-index:2;transition:opacity .4s ease}
 .bunting-top span{width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:21px solid var(--yellow)}
 .bunting-top span:nth-child(6n+2){border-top-color:var(--red)}
@@ -124,12 +132,15 @@ body{
 .bunting-top span:nth-child(6n+5){border-top-color:var(--pink)}
 .bunting-top span:nth-child(6n){border-top-color:var(--orange)}
 .stage.opened .bunting-top{opacity:0}
+/* title above envelope */
 .invite-title{position:absolute;top:150px;left:0;right:0;text-align:center;z-index:3;transition:opacity .4s ease}
 .stage.opened .invite-title{opacity:0}
 .ti-small{font-family:'Caveat',cursive;font-size:30px;color:var(--teal);display:block;line-height:.7;transform:rotate(-4deg)}
 .ti-big{font-family:'Baloo 2',cursive;font-weight:800;font-size:46px;line-height:1;display:block;letter-spacing:1px}
 .ti-sub{font-family:'Patrick Hand';font-size:13px;color:#9a9a9a;letter-spacing:2px;display:block;margin-top:5px;text-transform:uppercase}
-.date-teaser{position:absolute;left:0;right:0;bottom:44px;text-align:center;z-index:6;font-family:'Patrick Hand';font-size:15px;letter-spacing:.5px;color:var(--blue-d);transition:opacity .4s ease}
+/* date teaser below envelope */
+.date-teaser{position:absolute;left:0;right:0;bottom:44px;text-align:center;z-index:6;font-family:'Patrick Hand';
+  font-size:15px;letter-spacing:.5px;color:var(--blue-d);transition:opacity .4s ease}
 .stage.opened .date-teaser{opacity:0}
 .open-arrow{position:absolute;right:6px;bottom:250px;width:152px;z-index:8;text-align:center;transition:opacity .4s ease;animation:bob 1.9s ease-in-out infinite;pointer-events:none}
 .stage.opened .open-arrow{opacity:0}
@@ -176,7 +187,7 @@ body{
               <span class="iv-ne"><span class="ct">N</span><span class="co">E</span></span>
             </div>
           </div>
-          <p class="iv-join">join us to celebrate</p>
+          <p class="iv-join">we'd love for you to<br>celebrate Nila turning one!</p>
           <h3 class="iv-name">NILA'S<br>FIRST BIRTHDAY</h3>
           <div class="dot-divider"></div>
           <div class="iv-foot">
@@ -191,7 +202,12 @@ body{
               <p class="iv-rsvp">3 Blackwood Pl,<br>Oatlands NSW 2117</p>
             </div>
           </div>
-          <button class="gcal-btn" id="gcalBtn">📅 Add to Google Calendar</button>
+          <div class="btn-row">
+            <button class="mini-btn" id="gcalBtn">📅 Calendar</button>
+            <button class="mini-btn dir" id="dirBtn">🧭 Directions</button>
+            <button class="mini-btn rsvp" id="rsvpBtn">💬 RSVP</button>
+          </div>
+          <p class="iv-notes">🅿️ parking available · kindly rsvp by 19 july</p>
           <div class="cd-strip">
             <div class="confetti-mini"></div>
             <div class="countdown">
@@ -218,6 +234,7 @@ body{
             <div class="polaroid r1"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%201.jpeg" alt=""></div><p>sweet smiles</p></div>
             <div class="polaroid r2"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%202.jpeg" alt=""></div><p>tiny &amp; precious</p></div>
             <div class="polaroid r3"><div class="ph"><img src="Nila%20pictures/polaroid%20photo%203.jpeg" alt=""></div><p>one whole year!</p></div>
+            <div class="polaroid r1"><div class="ph ph-empty"><span>＋</span></div><p>more to come</p></div>
           </div>
           <p class="al-note">slip your own photos into these frames</p>
           <div class="cd-strip">
@@ -304,10 +321,38 @@ const GCAL_URL = "https://calendar.google.com/calendar/render?action=TEMPLATE"
   + "&dates=20260726T010000Z/20260726T040000Z"
   + "&details=" + encodeURIComponent("Join us to celebrate Nila's first birthday! 🎉")
   + "&location=" + encodeURIComponent("Burnside Gardens Community Centre, 3 Blackwood Pl, Oatlands NSW 2117");
-const gcalBtn = document.getElementById("gcalBtn");
-if(gcalBtn){
-  gcalBtn.addEventListener("pointerdown", e=>e.stopPropagation());
-  gcalBtn.addEventListener("click", ()=> window.open(GCAL_URL, "_blank"));
+const ADDRESS = "Burnside Gardens Community Centre, 3 Blackwood Pl, Oatlands NSW 2117";
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ADDRESS);
+// ↓↓↓ REPLACE with your WhatsApp number: country code + number, digits only (e.g. 61412345678)
+const WHATSAPP_NUMBER = "61431933607";
+const RSVP_TEXT = "Hi! We'd love to come to Nila's 1st birthday on Sun 26 July 🎉";
+const WHATSAPP_URL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(RSVP_TEXT);
+function wireBtn(id, url){
+  const b = document.getElementById(id);
+  if(!b) return;
+  b.addEventListener("pointerdown", e=>e.stopPropagation());
+  b.addEventListener("click", ()=> window.open(url, "_blank"));
+}
+wireBtn("gcalBtn", GCAL_URL);
+wireBtn("dirBtn", MAPS_URL);
+wireBtn("rsvpBtn", WHATSAPP_URL);
+
+/* confetti burst */
+const CONFETTI_COLORS=["#e8775f","#f0a85a","#f6cf63","#7cc6a0","#5fb0d6","#5f86ad","#ef9bbb"];
+function burstConfetti(){
+  for(let i=0;i<48;i++){
+    const p=document.createElement("div");
+    p.className="confetti-piece";
+    p.style.left=(Math.random()*100)+"vw";
+    p.style.background=CONFETTI_COLORS[i%CONFETTI_COLORS.length];
+    const dur=1.6+Math.random()*1.4;
+    p.style.animationDuration=dur+"s";
+    p.style.animationDelay=(Math.random()*0.25)+"s";
+    p.style.width=(6+Math.random()*6)+"px";
+    p.style.height=(10+Math.random()*8)+"px";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),(dur+0.5)*1000);
+  }
 }
 const stage = document.getElementById("stage");
 const canvas = document.getElementById("canvas");
@@ -323,7 +368,7 @@ const cards = [...document.querySelectorAll(".pcard")];
 const dots = [...document.querySelectorAll(".dot")];
 const count = cards.length;
 let idx = 0, opened = false, busy = false;
-function openEnv(){ if(opened) return; opened = true; stage.classList.add("opened"); cards[0].classList.add("active"); syncDots(); }
+function openEnv(){ if(opened) return; opened = true; stage.classList.add("opened"); cards[0].classList.add("active"); syncDots(); burstConfetti(); }
 envelope.addEventListener("click", openEnv);
 function closeEnv(){ if(!opened) return; cards[idx].classList.remove("active"); idx = 0;
   setTimeout(()=>{ stage.classList.remove("opened"); opened = false; syncDots(); }, 200); }
